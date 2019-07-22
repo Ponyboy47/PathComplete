@@ -1,9 +1,7 @@
 import TrailBlazer
 
-public let allPathTypes: Set<PathType> = [.socket, .link, .regular, .block, .directory, .character, .fifo]
-
 private func _complete(_ path: String? = nil,
-                       types: Set<PathType> = allPathTypes,
+                       types: Set<PathType> = PathType.allCases,
                        with children: DirectoryChildren) -> DirectoryChildren {
     var matches = children.filter { types.contains($0.type) }
     if let path = path {
@@ -17,13 +15,13 @@ private func _complete(_ path: String? = nil,
 }
 
 public extension DirectoryPath {
-    func complete(_ path: String? = nil, types: Set<PathType> = allPathTypes) throws -> DirectoryChildren {
+    func complete(_ path: String? = nil, types: Set<PathType> = PathType.allCases) throws -> DirectoryChildren {
         return try _complete(path, types: types, with: children(options: .includeHidden))
     }
 }
 
 public extension Open where PathType == DirectoryPath {
-    func complete(_ path: String? = nil, types: Set<TrailBlazer.PathType> = allPathTypes) -> DirectoryChildren {
+    func complete(_ path: String? = nil, types: Set<TrailBlazer.PathType> = TrailBlazer.PathType.allCases) -> DirectoryChildren {
         return _complete(path, types: types, with: children(options: .includeHidden))
     }
 }

@@ -5,7 +5,7 @@ A simple utility for completing paths when given a directory and pathname prefix
 ## Installation (SPM)
 
 ```swift
-.package(url: "https://github.com/Ponyboy47/PathComplete.git", from: "0.2.0")
+.package(url: "https://github.com/Ponyboy47/PathComplete.git", from: "0.3.0")
 ```
 
 ## Usage

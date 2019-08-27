@@ -75,8 +75,19 @@ final class PathCompleteTests: XCTestCase {
         try? path.recursiveDelete()
     }
 
+    func testUpdateCompletion() {
+        let (tmp, _, results2, _, _) = setup()
+
+        let completions = tmp.complete()
+        XCTAssertEqual(completions.updatedCompletions(for: "test"), results2)
+
+        var path = tmp.path
+        try? path.recursiveDelete()
+    }
+
     static var allTests = [
         ("testPathCompletion", testPathCompletion),
-        ("testOpenCompletion", testOpenCompletion)
+        ("testOpenCompletion", testOpenCompletion),
+        ("testUpdateCompletion", testUpdateCompletion)
     ]
 }
